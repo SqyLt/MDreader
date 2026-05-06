@@ -862,7 +862,7 @@ function updateHistoryButtons() {
 }
 
 function slugify(text, index) {
-  return `heading-${index}-${text.toLowerCase().replace(/[^\w-]+/g, "-").replace(/^-|-$|/g, "")}`;
+  return `heading-${index}-${text.toLowerCase().replace(/[^\w-]+/g, "-").replace(/^-|-$/g, "")}`;
 }
 
 function escapeHtml(value) {
