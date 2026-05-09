@@ -1,0 +1,93 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>MDreader</title>
+    <link rel="stylesheet" href="styles.css">
+  </head>
+  <body>
+    <div class="app" data-view="split">
+      <aside class="sidebar">
+        <div class="brand">
+          <div class="mark">M</div>
+          <div>
+            <strong>MDreader</strong>
+            <span data-i18n="brandSubtitle">Markdown Editor</span>
+          </div>
+        </div>
+
+        <section class="panel">
+          <div class="panel-title" data-i18n="documentPanel">Document</div>
+          <button class="sidebar-action" id="newDoc" type="button" data-i18n="newDocument">New document</button>
+          <button class="sidebar-action" id="openDoc" type="button" data-i18n="openMd">Open .md</button>
+          <button class="sidebar-action" id="saveDoc" type="button" data-i18n="saveMd">Save .md</button>
+          <button class="sidebar-action" id="exportHtml" type="button" data-i18n="exportHtml">Export HTML</button>
+          <button class="sidebar-action" id="exportPdf" type="button" data-i18n="exportPdf">Export PDF</button>
+          <input id="fileInput" type="file" accept=".md,.markdown,.txt,text/markdown,text/plain">
+        </section>
+
+        <section class="panel settings-panel">
+          <div class="panel-title" data-i18n="settingsPanel">Settings</div>
+          <label class="field-label" for="languageSelect" data-i18n="languageLabel">Language</label>
+          <select id="languageSelect" class="language-select" aria-label="Language" data-language-select>
+            <option value="en">English</option>
+            <option value="zh-CN">简体中文</option>
+            <option value="zh-TW">繁體中文</option>
+            <option value="ja">日本語</option>
+          </select>
+        </section>
+
+        <section class="panel outline-panel">
+          <div class="panel-title" data-i18n="outlinePanel">Outline</div>
+          <nav class="outline" id="outline"></nav>
+        </section>
+      </aside>
+
+      <main class="workspace">
+        <header class="topbar">
+          <input class="title-input" id="documentTitle" value="Untitled document" aria-label="Document title" data-i18n-attr="aria-label:documentTitleLabel">
+          <div class="toolbar" aria-label="Markdown toolbar" data-i18n-attr="aria-label:toolbarLabel">
+            <button type="button" data-history-action="undo" data-i18n="undoButton" data-i18n-attr="title:undoTitle" title="Undo">Undo</button>
+            <button type="button" data-history-action="redo" data-i18n="redoButton" data-i18n-attr="title:redoTitle" title="Redo">Redo</button>
+            <button type="button" data-wrap="**" title="Bold" data-i18n-attr="title:boldTitle">B</button>
+            <button type="button" data-wrap="*" title="Italic" data-i18n-attr="title:italicTitle"><i>I</i></button>
+            <button type="button" data-prefix="## " title="Heading" data-i18n-attr="title:headingTitle">H</button>
+            <button type="button" data-prefix="- " title="List" data-i18n="listButton" data-i18n-attr="title:listTitle">List</button>
+            <button type="button" data-prefix="> " title="Quote" data-i18n="quoteButton" data-i18n-attr="title:quoteTitle">Quote</button>
+            <button type="button" data-wrap="`" title="Inline code" data-i18n-attr="title:inlineCodeTitle">&lt;/&gt;</button>
+            <button type="button" data-block="code" title="Code block" data-i18n-attr="title:codeBlockTitle">{ }</button>
+            <button type="button" data-insert="[Link text](https://example.com)" title="Link" data-i18n="linkButton" data-i18n-attr="title:linkTitle">Link</button>
+          </div>
+          <div class="view-switch" aria-label="View switcher" data-i18n-attr="aria-label:viewSwitcherLabel">
+            <button type="button" data-view-choice="edit" data-view-key="edit">Edit</button>
+            <button type="button" data-view-choice="split" data-view-key="split" class="active">Split</button>
+            <button type="button" data-view-choice="preview" data-view-key="preview">Preview</button>
+          </div>
+          <select class="language-select top-language" aria-label="Language" data-language-select>
+            <option value="en">English</option>
+            <option value="zh-CN">简体中文</option>
+            <option value="zh-TW">繁體中文</option>
+            <option value="ja">日本語</option>
+          </select>
+        </header>
+
+        <section class="editor-shell">
+          <div class="source-pane">
+            <textarea id="editor" spellcheck="false" aria-label="Markdown editor" data-i18n-attr="aria-label:editorLabel"></textarea>
+          </div>
+          <article class="preview-pane">
+            <div id="preview" class="markdown-body"></div>
+          </article>
+        </section>
+
+        <footer class="statusbar">
+          <span id="status">Ready</span>
+          <span id="stats">0 chars - 0 lines</span>
+        </footer>
+      </main>
+    </div>
+
+    <script src="app.js"></script>
+  </body>
+</html>
